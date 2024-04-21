@@ -61,10 +61,10 @@ jobs:
       - name: 'Run Azure CLI commands'
         run: | 
             az container create \
-            >             --resource-group LAB1\
-            >             --name mycontainer \
-            >             --location centralus \
-            >             --image dockershinde2022/hemanthdocker:latest \
-            >             --ports 80 \
+                      --resource-group LAB1\
+                      --name mycontainer \
+                      --location centralus \
+                      --image dockershinde2022/hemanthdocker:latest \
+                      --ports 80 \
             
             
