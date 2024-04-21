@@ -58,13 +58,13 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   
-      - name: 'Run Azure CLI commands'
-        run: | 
-            az container create \
-                      --resource-group LAB1\
-                      --name mycontainer \
-                      --location centralus \
-                      --image dockershinde2022/hemanthdocker:latest \
-                      --ports 80 \
+      # - name: 'Run Azure CLI commands'
+      #   run: | 
+      #       az container create \
+      #                 --resource-group LAB1\
+      #                 --name mycontainer \
+      #                 --location centralus \
+      #                 --image dockershinde2022/hemanthdocker:latest \
+      #                 --ports 80 \
             
             
