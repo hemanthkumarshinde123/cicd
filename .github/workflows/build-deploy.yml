@@ -1,8 +1,9 @@
-name: test-and-deploy
+name: test and deploy
 
 on:
-  workflow_call:
-
+  push:
+    branches:
+      - main
 permissions:
   id-token: write
   contents: read
