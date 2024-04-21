@@ -59,8 +59,12 @@ jobs:
   
       - name: 'Run Azure CLI commands'
         run: | 
-            az webapp create --name mywebapp --resource-group myresourcegroup --plan myappserviceplan --deployment-container-image-name dockershinde2022/hemanthdocker:latest:latest
-
+            az container create \
+                      --resource-group LAB1\
+                      --name mycontainer1 \
+                      --location centralus \
+                      --image dockershinde2022/hemanthdocker:latest \
+                      --ports 80 \
             
             
                       
