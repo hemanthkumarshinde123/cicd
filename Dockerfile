@@ -26,5 +26,5 @@ COPY requirements.txt .
 
 COPY ./api /app/api
 EXPOSE 8080
-CMD ["uvicorn", "--app-dir=.", "api.main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "--app-dir=.", "main.py", "--host", "0.0.0.0", "--port", "8080"]
 

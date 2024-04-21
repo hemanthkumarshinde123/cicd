@@ -11,6 +11,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.modified, 'backend/')
     steps:
       - uses: actions/checkout@v3
       - name: Setup Python
@@ -46,25 +47,24 @@ jobs:
           context: .
           tags: dockershinde2022/hemanthdocker:latest
 
-  # deploy-azure:
-  #   needs: docker
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: 'Az CLI login'
-  #       uses: azure/login@v1
-  #       with:
-  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
-  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  deploy-azure:
+    needs: docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   
-  #     - name: 'Run Azure CLI commands'
-  #       run: |
-  #         az containerapp up \
-  #           --name my-container-app \
-  #           --resource-group my-container-apps \
-  #           --location centralus \
-  #           --environment 'my-container-apps' \
-  #           --image pedrojunqueira/mycontainer:latest \
-  #           --target-port 80 \
-  #           --ingress external \
-  #           --query properties.configuration.ingress.fqdn
+      - name: 'Run Azure CLI commands'
+        run: | 
+            az container create \
+            >             --resource-group LAB1\
+            >             --name mycontainer \
+            >             --location centralus \
+            >             --image dockershinde2022/hemanthdocker:latest \
+            >             --ports 80 \
+            
+            
